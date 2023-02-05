@@ -185,6 +185,7 @@ SSH Summary Table:
 - So rather than giving IAM user credentials to the EC2 directly for it to get permission to perform certain tasks, create a IAM Role for it and assign appropriate permissions to the Role.
 
 -----------------------------------
+
 EC2 Instances Purchasing Options:
 --------------------------------
 - On-Demand Instances - Short workload, predictable pricing, pay by second.
@@ -194,7 +195,7 @@ EC2 Instances Purchasing Options:
 - Savings Plans (1 & 3 years, not 1 to 3 but 1 or 3) - Commitment to an amount of usage, long workload
 - Dedicated Hosts - book an entire pysical server, control instance placement
 - Dedicated Instances - no other customers will share your hardware
-- Capacity Reservatios - reserve capacity in a specific AZ(Area Zone) for any duration
+- Capacity Reservatios - reserve capacity in a specific AZ(Availability Zone) for any duration
 
 EC2 On Demand:
 -------------
