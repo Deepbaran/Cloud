@@ -88,6 +88,7 @@ EC2 instance Types - Compute Optimized:
 	o Scientific modeling & machine learning
 	o Dedicated gaming servers
 - Best for High-Performance Computing (HPC) application.
+- Tasks that need high level processors.
 - Instances: C6g, C6gn, C5, C5a, C5n, C4
 
 EC2 instance Types - Memory Optimized:
@@ -99,6 +100,7 @@ EC2 instance Types - Memory Optimized:
 	o Distributed web scale cache stores
 	o In-memory databases optimized for BI (business Intelligence)
 	o Applications performing real-time processing of big unstructured data.
+- Tasks that need more RAM.
 - Instances: R6g, R5, R5a, R5b, R5n, R4, X1e, X1, High Memory, z1d
 
 EC2 instance Types - Storage Optimized:
@@ -110,6 +112,7 @@ EC2 instance Types - Storage Optimized:
 	o Cache for in-mamory databases (for example, Redis)
 	o Data warehousing applications
 	o Distributed file systems
+- Tasks that need more storage.
 - Instances: I3, I3en, D2, D3, D3en, H1
 
 -----------------------------------
@@ -191,8 +194,9 @@ EC2 Instances Purchasing Options:
 - On-Demand Instances - Short workload, predictable pricing, pay by second.
 - Reserved (1 & 3 years, not 1 to 3 but 1 or 3):
 	o Reserved Instances - long workloads
-	o Convertible Reserved Instances - long workloads with flexible instances
+	o Convertible Reserved Instances - long workloads with flexible instances [Change Instance types over time]
 - Savings Plans (1 & 3 years, not 1 to 3 but 1 or 3) - Commitment to an amount of usage, long workload
+- Spot Instanes - Short workloads, cheap, can lose instances (less reliable)
 - Dedicated Hosts - book an entire pysical server, control instance placement
 - Dedicated Instances - no other customers will share your hardware
 - Capacity Reservatios - reserve capacity in a specific AZ(Availability Zone) for any duration
@@ -204,9 +208,9 @@ EC2 On Demand:
 • All other operating systems - billing per hour
 • Has the highest cost but no upfront payment
 • No long-term commitment
-• Recommended for short-term and un-interrupted workloads, where you can't predict how the application will behave.
+• Recommended for "short-term" and "un-interrupted workloads", where you can't predict how the application will behave.
 
-EC2 Reserved Instances:
+EC2 Reserved Instances: [AZ]
 ----------------------
 • Up to 72% (Can vary) discount compared to On-demand
 • You reserve a specific instance attributes (Instance Type, Region, Tenancy, OS)
@@ -260,14 +264,14 @@ EC2 Dedicated Instances:
 • May share hardware with other instances in same account
 • No control over instance placement (can move hardware after Stop / Start)
 
-EC2 Capacity Reservations:
+EC2 Capacity Reservations: [AZ]
 -------------------------
 • Reserve On-Demand instances capacity in a specific AZ for any duration
 • You always have access to EC2 capacity when you need it
 • No time commitment (create/cancel anytime), no billing discounts
 • Combine with Regional Reserved Instances and Savings Plans to benefit from billing discounts
 • You’re charged at On-Demand rate whether you run instances or not
-• Suitable for short-term, uninterrupted workloads that needs to be in a specific AZ
+• Suitable for "short-term", "uninterrupted workloads" that needs to be in a specific AZ
 
 Which purchasing option is right for me?
 ---------------------------------------
@@ -291,10 +295,24 @@ Targeted instance placement										N						Y
 Automatic instance placement									Y						Y
 Add capacity using an allocation request						N						Y
 
+• Dedicated Instance means we will have our own instance and our own h/w but dedicated host means we will have our own physical server itself and it gives us visibility to lower level h/w.
+
 -----------------------------------
 
 Shared Responsibility Model for EC2:
 -----------------------------------
+- AWS:
+	o Infrastructure (global network security)
+	o Isolation on Physical hosts
+	o Replacing faulty hardware
+	o Compliance Validation
+
+- You:
+	o Security Groups rules
+	o Operating-system patches and updates
+	o Software and utilities installed on the EC2 instance
+	o IAM Roles assigned to EC2 & IAM user access management
+	o Data security on your instance
 
 -----------------------------------
 
@@ -308,3 +326,5 @@ Notes:
 - Private IPv4 address will be used to access the instance from the internal AWS network.
 - When we stop and start an instane, the public IP will change but Private IP will remain same.
 - Spot instance gives you the biggest discount but not good for databases.
+
+-----------------------------------

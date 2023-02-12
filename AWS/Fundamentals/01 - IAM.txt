@@ -8,6 +8,7 @@ IAM: Users & Groups:
 - Users are people within your organization, and can be grouped.
 - Groups only contain users, not other groups.
 - Users don't have to belong to a group, and user can belong to multiple groups.
+- We can have users that do not belong to any group but this is not a good practice in AWS.
 
 IAM: Permisions:
 ----------------
@@ -132,7 +133,7 @@ How can users access AWS?
 - Access Keys are generated through the AWS Console
 - Users manage their own keys [Do not use root account to create Access Keys]
 - Access Keys are secret, just like a password. Don't share them.
-- Access Key UD ~= username
+- Access Key ID ~= username
 - Secret Access Key ~= password
 
 What's the AWS CLI?
@@ -206,14 +207,18 @@ IAM Guidelines & Best Practices:
 
 -----------------------------------
 
-IAM Best Practices:
-------------------
-
------------------------------------
-
 Shared Responsibility Model for IAM:
 -----------------------------------
-
+- AWS: [Everything that they do]
+	o Infrastructure (global network security)
+	o Configuration and vulnerability analysis
+	o Compliance validation
+- You: [Regarding IAM, AWS leaves much more responsibilities to you]
+	o Users, Groups, Roles, Policies management and monitoring
+	o Enable MFA on all accounts and enforcing this
+	o Rotate all your keys often
+	o Use IAM tools to apply appropriate permissions
+	o Analyze access patterns & review permissions
 
 -----------------------------------
 
@@ -234,3 +239,5 @@ Notes:
 - IAM user, IAM group, IAM Role, etc.
 - IAM user groups can only have users in them and not other groups.
 - According to AWS Shared Responsibility Model, "AWS Infrastructure" is AWS responsibility.
+
+-----------------------------------
