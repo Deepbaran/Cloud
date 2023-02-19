@@ -3,7 +3,7 @@ Deployment & Managing Infrastructure at Scale:
 
 What is CloudFormation:
 ----------------------
-• CloudFormation is a declarative way of outlining your AWS Infrastructure, for any resources (most of them are supported).
+• CloudFormation is a "declarative way" of outlining your AWS Infrastructure, for any resources (most of them are supported).
 • For example, within a CloudFormation template, you say:
 	• I want a security group
 	• I want two EC2 instances using this security group
@@ -20,7 +20,7 @@ Benefits of AWS CloudFormation (1/2):
 	• Each resources within the stack is tagged with an identifier so you can easily see how much a stack costs you
 	• You can estimate the costs of your resources using the CloudFormation template
 	• Savings strategy: In Dev, you could automation deletion of templates at 5 PM and recreated at 8 AM, safely
-	
+	 
 Benefits of AWS CloudFormation (2/2):
 ------------------------------------
 • Productivity
@@ -39,6 +39,10 @@ CloudFormation Stack Designer:
 • Example: WordPress CloudFormation Stack
 • We can see all the resources 
 • We can see the relations between the components
+- From exam perspective, Cloudformation will be used when we have Infrastructure as Code or when we need to repeat an architecture in different environments, different regions or different AWS Accounts.
+- AWS CloudFormation templates are JSON or YAML-formatted text files. They are declarations of the AWS resources that make up a stack.
+
+-----------------------------------
 
 AWS Cloud Development Kit (CDK):
 -------------------------------
@@ -51,9 +55,19 @@ AWS Cloud Development Kit (CDK):
 	
 CDK Example:
 -----------
+- If we define our own CDK applicaiton in Python (Let's just say we create a Lambda function, a DB Table and other service) then this CDK application using the CDK CLI is going to be transformed into a Cloudformation templates and then that generated CloudFormation template can then be applied to CloudFormation to deploy our infrastructure.
+
+CDK Application (Python, JavaScript/TypeScript, etc.) -CDK CLI->CloudFormation Template -> Cloudformation
+
+- We use CDK because it allows us Type Safety or to reuse some code or have for loops, etc.
+
+-----------------------------------
 
 Typical architecture: Web App 3-tier:
 ------------------------------------
+- A 3-Tier Architecture is used for AWS applications.
+
+User -> ELB <-> EC2 Instance <-> Amazon RDS
 
 Developer problems on AWS:
 -------------------------
@@ -71,7 +85,7 @@ AWS Elastic Beanstalk Overview:
 • It uses all the component’s we’ve seen before: EC2, ASG, ELB, RDS, etc…
 • But it’s all in one view that’s easy to make sense of! 
 • We still have full control over the configuration 
-• Beanstalk = Platform as a Service (PaaS) 
+• Beanstalk = Platform as a Service (PaaS) [We just worry about the code and not the Infrastructure]
 • Beanstalk is free but you pay for the underlying instances
 
 Elastic Beanstalk:
@@ -79,7 +93,8 @@ Elastic Beanstalk:
 • Managed service 
 	• Instance configuration / OS is handled by Beanstalk 
 	• Deployment strategy is configurable but performed by Elastic Beanstalk 
-	• Capacity provisioning • Load balancing & auto-scaling 
+	• Capacity provisioning 
+	• Load balancing & auto-scaling 
 	• Application health-monitoring & responsiveness 
 • Just the application code is the responsibility of the developer 
 • Three architecture models: 
@@ -101,10 +116,12 @@ Elastic Beanstalk:
 	• Preconfigured Docker
 	• If not supported, you can write your custom platform (advanced)
 	
-Elastic Beanstalk – Health Monitoring:
+Elastic Beanstalk – Health Monitoring:**
 -------------------------------------
 • Health agent pushes metrics to CloudWatch
 • Checks for app health, publishes health events
+
+-----------------------------------
 
 AWS CodeDeploy:
 --------------
@@ -113,6 +130,10 @@ AWS CodeDeploy:
 • Works with On-Premises Servers
 • Hybrid service
 • Servers / Instances must be provisioned and configured ahead of time with the CodeDeploy Agent
+- It is used to upgrade from v1 to v2 for both EC2 Instances and On-premises server applications automatically from a single interface.
+- It helps people to transition from on-premise to AWS by using the same way to deploy the application either with On-Premise servers or EC2 Instances.
+
+-----------------------------------
 
 AWS CodeCommit:
 --------------
@@ -128,6 +149,8 @@ AWS CodeCommit:
 	• Scalable & highly available
 	• Private, Secured, Integrated with AWS
 	
+-----------------------------------
+
 AWS CodeBuild:
 -------------
 • Code building service in the cloud (name is obvious)
@@ -138,6 +161,10 @@ AWS CodeBuild:
 	• Secure
 	• Pay-as-you-go pricing – only pay for the build time
 	
+	CodeCommit <-Retrieve Code- CodeBuild -Build Code-> Ready-to-deploy artifact
+	
+-----------------------------------
+
 AWS CodePipeline:
 ----------------
 • Orchestrate the different steps to have the code automatically pushed to production
@@ -147,6 +174,11 @@ AWS CodePipeline:
 	• Fully managed, compatible with CodeCommit, CodeBuild, CodeDeploy, Elastic Beanstalk, CloudFormation, GitHub, 3rd-party services (GitHub…) & custom plugins…
 	• Fast delivery & rapid updates
 	
+	CodePipeline: orchestration layer
+	CodeCommit -> CodeBuild -> CodeDeploy -> Elastic Beanstalk	
+	
+-----------------------------------
+
 AWS CodeArtifact:
 ----------------
 • Software packages depend on each other to be built (also called code dependencies), and new ones are created
@@ -156,11 +188,16 @@ AWS CodeArtifact:
 • Works with common dependency management tools such as Maven, Gradle, npm, yarn, twine, pip, and NuGet
 • Developers and CodeBuild can then retrieve dependencies straight from CodeArtifact
 
+-----------------------------------
+
 AWS CodeStar:
 ------------
 • Unified UI to easily manage software development activities in one place
-• “Quick way” to get started to correctly set-up CodeCommit, CodePipeline, CodeBuild, CodeDeploy, Elastic Beanstalk, EC2, etc…
+• “Quick way” to get started to correctly "set-up" CodeCommit, CodePipeline, CodeBuild, CodeDeploy, Elastic Beanstalk, EC2, etc…
 • Can edit the code ”in-the-cloud” using AWS Cloud9
+- CodeStar is used to quickly develop, build, and deploy applications on AWS. Elastic Beanstalk can be used to monitor and to check the health of an environment.
+
+-----------------------------------
 
 AWS Cloud9:
 ----------
@@ -169,13 +206,15 @@ AWS Cloud9:
 • A cloud IDE can be used within a web browser, meaning you can work on your projects from your office, home, or anywhere with internet with no setup necessary
 • AWS Cloud9 also allows for code collaboration in real-time (pair programming)
 
+-----------------------------------
+
 AWS Systems Manager (SSM):
 -------------------------
 • Helps you manage your EC2 and On-Premises systems at scale
 • Another Hybrid AWS service
 • Get operational insights about the state of your infrastructure
 • Suite of 10+ products
-• Most important features are:
+• Most important features are:**
 	• Patching automation for enhanced compliance
 	• Run commands across an entire fleet of servers
 	• Store parameter configuration with the SSM Parameter Store
@@ -188,6 +227,8 @@ How Systems Manager works:
 • If an instance can’t be controlled with SSM, it’s probably an issue with the SSM agent!
 • Thanks to the SSM agent, we can run commands, patch & configure our servers
 
+-----------------------------------
+
 Systems Manager – SSM Session Manager:
 -------------------------------------
 • Allows you to start a secure shell on your EC2 and on-premises servers
@@ -196,18 +237,22 @@ Systems Manager – SSM Session Manager:
 • Supports Linux, macOS, and Windows
 • Send session log data to S3 or CloudWatch Logs
 
+	User -IAM Permissions-> Session Manager -Execute Commands-> EC2 Instance (SSM Agent)
+
+-----------------------------------
+
 AWS OpsWorks:
 ------------
-• Chef & Puppet help you perform server configuration automatically, or repetitive actions
+• Chef & Puppet (Both are not created by AWS) help you perform server configuration automatically, or repetitive actions
 • They work great with EC2 & On-Premises VM
 • AWS OpsWorks = Managed Chef & Puppet
 • It’s an alternative to AWS SSM
 • Only provision standard AWS resources:
-• EC2 Instances, Databases, Load Balancers, EBS volumes…
+	• EC2 Instances, Databases, Load Balancers, EBS volumes…
 • In the exam: Chef or Puppet needed => AWS OpsWorks
+- The only reason we will use AWS OpsWork is if we were already using Chef and Puppet before moving to AWS and we still want to use Chef and Puppet in AWS also.
 
-OpsWorks Architecture:
----------------------
+-----------------------------------
 
 Deployment - Summary:
 --------------------
