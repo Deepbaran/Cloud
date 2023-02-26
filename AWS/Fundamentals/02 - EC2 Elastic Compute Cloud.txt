@@ -87,7 +87,7 @@ EC2 instance Types - Compute Optimized:
 	o High Performance computing (HPC)
 	o Scientific modeling & machine learning
 	o Dedicated gaming servers
-- Best for High-Performance Computing (HPC) application.
+- Best for High-Performance Computing (HPC) application. Needs more CPU.
 - Tasks that need high level processors.
 - Instances: C6g, C6gn, C5, C5a, C5n, C4
 
@@ -100,7 +100,7 @@ EC2 instance Types - Memory Optimized:
 	o Distributed web scale cache stores
 	o In-memory databases optimized for BI (business Intelligence)
 	o Applications performing real-time processing of big unstructured data.
-- Tasks that need more RAM.
+- Tasks that need more RAM. Used for Caching.
 - Instances: R6g, R5, R5a, R5b, R5n, R4, X1e, X1, High Memory, z1d
 
 EC2 instance Types - Storage Optimized:
@@ -263,6 +263,8 @@ EC2 Dedicated Instances:
 • Instances run on hardware that’s dedicated to you
 • May share hardware with other instances in same account
 • No control over instance placement (can move hardware after Stop / Start)
+• Your instances run  ina a VPC on h/w that's dedicated to a single customer. Your Dedicated instances are physically isolated at the host hardware level from instances that belong to other AWS accounts.
+• Dedicated instances may share hardware with other instances from the same AWS account that are not Dedicated instances.
 
 EC2 Capacity Reservations: [AZ]
 -------------------------
